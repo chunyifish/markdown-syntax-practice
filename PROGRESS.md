@@ -1,5 +1,12 @@
 # PROGRESS
 
+## 2026-06-19
+
+- 改善 `app/index.html` 的 Markdown 練習流程：新增每題檢查清單、完成進度條、下一題按鈕、行數/字數狀態、自動儲存提示、草稿與完成進度 localStorage 保存、清除進度功能。
+- 維持靜態網頁架構，未加入框架、建置工具、後端服務或 Firebase。
+- 已做頁面內 JavaScript 靜態語法檢查。
+- 瀏覽器工具在本機啟動失敗，錯誤邊界為 Windows 瀏覽器程序啟動驗證；尚未完成實際瀏覽器互動驗證。
+
 ## 2026-06-18
 
 - 已依 `https://github.com/chunyifish/codex-project-template` 的 `INIT.md` 流程初始化專案。
