@@ -12,11 +12,12 @@
 - 已初始化 Git 並建立初始 commit。
 - 已建立 GitHub repo：https://github.com/chunyifish/markdown-syntax-practice
 - 已啟用 GitHub Pages workflow 模式。
+- 已加入題目區、自動檢查與 `marked` Markdown 預覽。
 
 ## 目前狀態
 
-專案骨架已建立，尚未完成 Markdown 練習器功能實作。
+專案已有可操作的 Markdown 練習器初版，可選題、輸入、即時預覽並自動判斷完成狀態。
 
 ## 下一步
 
-檢查 GitHub Pages workflow 是否成功完成，接著開始實作 Markdown 練習器功能。
+檢查手機版互動體驗，並補上更多練習題與答案提示。

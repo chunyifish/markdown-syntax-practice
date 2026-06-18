@@ -18,3 +18,8 @@
 
 理由：目前需求沒有資料庫、登入、檔案儲存或雲端函式。
 
+## 2026-06-18 - Markdown 解析器
+
+決定使用 `marked@18.0.5` CDN ESM 版本作為 Markdown 預覽解析器。
+
+理由：專案目前是 GitHub Pages 靜態網頁，不需要建置流程；`marked` 支援 GitHub Flavored Markdown，可處理表格、程式碼區塊與常見語法，比自製簡易解析器穩定。固定版本可避免未來 CDN 自動升級造成行為改變；使用 ESM 匯入可配合 `marked@18` 的瀏覽器載入方式。

@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>markdown語法練習器</title>
+    <title>Markdown 語法練習器</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13'%3EM%3C/text%3E%3C/svg%3E">
     <style>
       :root {
         color-scheme: light;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         color: #17202a;
-        background: #f7f8fa;
+        background: #f6f7f9;
       }
 
       * {
@@ -21,95 +22,259 @@
         min-height: 100vh;
       }
 
+      button,
+      textarea {
+        font: inherit;
+      }
+
       main {
-        width: min(1120px, calc(100% - 32px));
+        width: min(1280px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 32px 0;
+        padding: 28px 0;
       }
 
       header {
-        margin-bottom: 24px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
       }
 
       h1 {
-        margin: 0 0 8px;
-        font-size: 32px;
+        font-size: 30px;
         line-height: 1.2;
       }
 
-      p {
-        margin: 0;
-        color: #4c5967;
+      header p {
+        margin-top: 8px;
+        color: #526070;
       }
 
-      .workspace {
+      .progress {
+        min-width: 150px;
+        text-align: right;
+        color: #334155;
+      }
+
+      .progress strong {
+        display: block;
+        font-size: 24px;
+      }
+
+      .layout {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 280px minmax(0, 1fr);
         gap: 16px;
       }
 
-      section {
+      .lessons,
+      .panel {
         min-width: 0;
+        border: 1px solid #d9dee7;
+        border-radius: 8px;
+        background: #ffffff;
       }
 
-      h2 {
-        margin: 0 0 10px;
+      .lessons {
+        padding: 12px;
+      }
+
+      .lesson-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .lesson-button {
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 8px;
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid #d9dee7;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #253244;
+        padding: 10px;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .lesson-button[aria-pressed="true"] {
+        border-color: #2563eb;
+        background: #eff6ff;
+      }
+
+      .status-dot {
+        width: 18px;
+        height: 18px;
+        border: 1px solid #a7b1bf;
+        border-radius: 50%;
+        margin-top: 1px;
+      }
+
+      .lesson-button.is-complete .status-dot {
+        border-color: #15803d;
+        background: #22c55e;
+      }
+
+      .lesson-title {
+        font-weight: 700;
+      }
+
+      .lesson-goal {
+        margin-top: 2px;
+        color: #5f6d7d;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .workbench {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .panel {
+        display: flex;
+        min-height: 560px;
+        flex-direction: column;
+      }
+
+      .panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 58px;
+        border-bottom: 1px solid #e4e8ef;
+        padding: 12px 14px;
+      }
+
+      .panel-head h2 {
         font-size: 18px;
+      }
+
+      .hint {
+        color: #526070;
+        font-size: 14px;
       }
 
       textarea,
       .preview {
         width: 100%;
-        min-height: 420px;
-        border: 1px solid #d7dde5;
-        border-radius: 8px;
-        background: #ffffff;
+        flex: 1;
+        min-height: 500px;
+        border: 0;
         padding: 16px;
-        font: inherit;
+        background: #ffffff;
       }
 
       textarea {
-        resize: vertical;
+        resize: none;
         line-height: 1.55;
+        outline: none;
       }
 
       .preview {
         overflow: auto;
+        line-height: 1.6;
+      }
+
+      .preview > :first-child {
+        margin-top: 0;
       }
 
       .preview h1,
       .preview h2,
       .preview h3 {
-        margin-top: 0;
+        line-height: 1.25;
       }
 
       .preview code {
         border-radius: 4px;
         background: #eef1f5;
-        padding: 2px 4px;
+        padding: 2px 5px;
       }
 
       .preview pre {
         overflow: auto;
         border-radius: 8px;
         background: #202733;
-        color: #f7f8fa;
+        color: #f8fafc;
         padding: 14px;
       }
 
-      @media (max-width: 760px) {
-        main {
-          width: min(100% - 24px, 1120px);
-          padding: 24px 0;
+      .preview blockquote {
+        margin-left: 0;
+        border-left: 4px solid #9ca3af;
+        padding-left: 12px;
+        color: #475569;
+      }
+
+      .feedback {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        border-radius: 999px;
+        padding: 5px 10px;
+        background: #fff7ed;
+        color: #9a3412;
+        font-size: 14px;
+      }
+
+      .feedback.is-complete {
+        background: #ecfdf5;
+        color: #166534;
+      }
+
+      .actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .text-button {
+        min-height: 32px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        background: #ffffff;
+        color: #253244;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .text-button:hover {
+        border-color: #94a3b8;
+        background: #f8fafc;
+      }
+
+      @media (max-width: 920px) {
+        header {
+          align-items: start;
+          flex-direction: column;
         }
 
-        .workspace {
+        .progress {
+          text-align: left;
+        }
+
+        .layout,
+        .workbench {
           grid-template-columns: 1fr;
         }
 
+        .panel,
         textarea,
         .preview {
-          min-height: 300px;
+          min-height: 340px;
         }
       }
     </style>
@@ -117,90 +282,171 @@
   <body>
     <main>
       <header>
-        <h1>markdown語法練習器</h1>
-        <p>輸入 Markdown，查看基礎預覽。後續會加入練習題與提示流程。</p>
+        <div>
+          <h1>Markdown 語法練習器</h1>
+          <p>選一道題目，輸入 Markdown，系統會自動檢查語法並即時預覽。</p>
+        </div>
+        <div class="progress" aria-live="polite">
+          <span>完成進度</span>
+          <strong id="progress-count">0 / 0</strong>
+        </div>
       </header>
 
-      <div class="workspace">
-        <section aria-labelledby="editor-title">
-          <h2 id="editor-title">Markdown</h2>
-          <textarea id="editor" spellcheck="false"># Markdown 練習
+      <div class="layout">
+        <aside class="lessons" aria-labelledby="lesson-list-title">
+          <h2 id="lesson-list-title">題目區</h2>
+          <div id="lesson-list" class="lesson-list"></div>
+        </aside>
 
-請試著輸入：
+        <div class="workbench">
+          <section class="panel" aria-labelledby="editor-title">
+            <div class="panel-head">
+              <div>
+                <h2 id="editor-title">Markdown 輸入</h2>
+                <p id="lesson-goal" class="hint"></p>
+              </div>
+              <div class="actions">
+                <button id="hint-button" class="text-button" type="button">提示</button>
+                <button id="reset-button" class="text-button" type="button">重設</button>
+              </div>
+            </div>
+            <textarea id="editor" spellcheck="false" aria-label="Markdown 輸入區"></textarea>
+          </section>
 
-- **粗體**
-- [連結](https://example.com)
-- `行內程式碼`
-
-> 這是一段引用。</textarea>
-        </section>
-
-        <section aria-labelledby="preview-title">
-          <h2 id="preview-title">預覽</h2>
-          <div id="preview" class="preview" aria-live="polite"></div>
-        </section>
+          <section class="panel" aria-labelledby="preview-title">
+            <div class="panel-head">
+              <h2 id="preview-title">預覽</h2>
+              <span id="feedback" class="feedback"></span>
+            </div>
+            <div id="preview" class="preview" aria-live="polite"></div>
+          </section>
+        </div>
       </div>
     </main>
 
-    <script>
+    <script type="module">
+      import { marked } from "https://cdn.jsdelivr.net/npm/marked@18.0.5/lib/marked.esm.js";
+
+      const lessons = [
+        {
+          id: "heading",
+          title: "二級標題",
+          goal: "寫出一個二級標題。",
+          starter: "請把這行改成二級標題",
+          hint: "二級標題用兩個井字號開頭，例如：## 我的標題",
+          test: (value) => /^##\s+\S+/m.test(value)
+        },
+        {
+          id: "list",
+          title: "項目清單",
+          goal: "建立至少三個項目的無序清單。",
+          starter: "- 第一項\n- 第二項",
+          hint: "每個項目前面加上 -，例如：- 練習 Markdown",
+          test: (value) => value.split("\n").filter((line) => /^-\s+\S+/.test(line)).length >= 3
+        },
+        {
+          id: "link",
+          title: "連結",
+          goal: "插入一個可點擊的超連結。",
+          starter: "OpenAI：https://openai.com",
+          hint: "連結格式是：[顯示文字](https://example.com)",
+          test: (value) => /\[[^\]]+\]\(https?:\/\/[^)]+\)/.test(value)
+        },
+        {
+          id: "quote-code",
+          title: "引用與程式碼",
+          goal: "寫出一段引用，並加入一段行內程式碼。",
+          starter: "> 這是一段引用\n\n請加入行內程式碼",
+          hint: "引用用 > 開頭；行內程式碼用反引號包住，例如：`code`",
+          test: (value) => /^>\s+\S+/m.test(value) && /`[^`]+`/.test(value)
+        },
+        {
+          id: "table",
+          title: "表格",
+          goal: "建立一個 Markdown 表格。",
+          starter: "| 語法 | 用途 |\n|---|---|\n| # | 標題 |",
+          hint: "表格需要標題列與分隔列，例如：| 欄位 | 欄位 | 下一行放 |---|---|",
+          test: (value) => /\|.+\|\s*\n\|[\s:-]+\|[\s|:-]*\|/.test(value)
+        }
+      ];
+
       const editor = document.querySelector("#editor");
       const preview = document.querySelector("#preview");
+      const lessonList = document.querySelector("#lesson-list");
+      const lessonGoal = document.querySelector("#lesson-goal");
+      const feedback = document.querySelector("#feedback");
+      const progressCount = document.querySelector("#progress-count");
+      const hintButton = document.querySelector("#hint-button");
+      const resetButton = document.querySelector("#reset-button");
 
-      function escapeHtml(value) {
-        return value
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#039;");
+      const completedLessons = new Set();
+      let activeLesson = lessons[0];
+
+      marked.setOptions({
+        breaks: true,
+        gfm: true
+      });
+
+      function renderLessonList() {
+        lessonList.innerHTML = lessons.map((lesson) => {
+          const isActive = lesson.id === activeLesson.id;
+          const isComplete = completedLessons.has(lesson.id);
+          return `
+            <button
+              class="lesson-button ${isComplete ? "is-complete" : ""}"
+              type="button"
+              data-lesson-id="${lesson.id}"
+              aria-pressed="${isActive}"
+            >
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>
+                <span class="lesson-title">${lesson.title}</span>
+                <span class="lesson-goal">${lesson.goal}</span>
+              </span>
+            </button>
+          `;
+        }).join("");
       }
 
-      function renderMarkdown(markdown) {
-        const lines = escapeHtml(markdown).split("\n");
-        let inList = false;
-
-        const html = lines.map((line) => {
-          if (line.startsWith("### ")) return `<h3>${line.slice(4)}</h3>`;
-          if (line.startsWith("## ")) return `<h2>${line.slice(3)}</h2>`;
-          if (line.startsWith("# ")) return `<h1>${line.slice(2)}</h1>`;
-          if (line.startsWith("> ")) return `<blockquote>${line.slice(2)}</blockquote>`;
-
-          const listMatch = line.match(/^- (.+)$/);
-          if (listMatch) {
-            const item = `<li>${formatInline(listMatch[1])}</li>`;
-            if (!inList) {
-              inList = true;
-              return `<ul>${item}`;
-            }
-            return item;
-          }
-
-          if (inList) {
-            inList = false;
-            return `</ul>${line ? `<p>${formatInline(line)}</p>` : ""}`;
-          }
-
-          return line ? `<p>${formatInline(line)}</p>` : "";
-        });
-
-        if (inList) html.push("</ul>");
-        return html.join("");
+      function selectLesson(lessonId) {
+        activeLesson = lessons.find((lesson) => lesson.id === lessonId) || lessons[0];
+        lessonGoal.textContent = activeLesson.goal;
+        editor.value = activeLesson.starter;
+        renderLessonList();
+        update();
+        editor.focus();
       }
 
-      function formatInline(value) {
-        return value
-          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-          .replace(/`(.+?)`/g, "<code>$1</code>")
-          .replace(/\[(.+?)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+      function update() {
+        const isComplete = activeLesson.test(editor.value);
+        if (isComplete) completedLessons.add(activeLesson.id);
+
+        preview.innerHTML = marked.parse(editor.value);
+        feedback.textContent = isComplete ? "完成" : "尚未符合題目要求";
+        feedback.classList.toggle("is-complete", isComplete);
+        progressCount.textContent = `${completedLessons.size} / ${lessons.length}`;
+        renderLessonList();
       }
 
-      function updatePreview() {
-        preview.innerHTML = renderMarkdown(editor.value);
-      }
+      lessonList.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-lesson-id]");
+        if (!button) return;
+        selectLesson(button.dataset.lessonId);
+      });
 
-      editor.addEventListener("input", updatePreview);
-      updatePreview();
+      hintButton.addEventListener("click", () => {
+        feedback.textContent = activeLesson.hint;
+        feedback.classList.remove("is-complete");
+      });
+
+      resetButton.addEventListener("click", () => {
+        editor.value = activeLesson.starter;
+        update();
+        editor.focus();
+      });
+
+      editor.addEventListener("input", update);
+      selectLesson(activeLesson.id);
     </script>
   </body>
 </html>
-
