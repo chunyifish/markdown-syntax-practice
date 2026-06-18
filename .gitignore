@@ -17,4 +17,5 @@ build/
 # Temporary workspace
 .template-src/
 working/tmp/
-
+working/codex-lazy-guides/
+working/codex-project-template/

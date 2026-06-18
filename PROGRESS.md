@@ -13,6 +13,10 @@
 - 已建立 GitHub repo：https://github.com/chunyifish/markdown-syntax-practice
 - 已啟用 GitHub Pages workflow 模式。
 - 已加入題目區、自動檢查與 `marked` Markdown 預覽。
+- 已產出 `outputs/Codex懶人包-初始化可接續專案工作區.md`，整理為可直接交給 Codex 執行的專案初始化懶人包。
+- 已將懶人包加入 `chunyifish/codex-project-template` 的 `docs/01-初始化可接續專案工作區.md`，並在 README 新增入口連結；已推送 commit `4d7817e`。
+- 已依使用者要求將懶人包獨立為新 repo：https://github.com/chunyifish/codex-lazy-guides
+- 已將 `codex-project-template` 中的懶人包文件與 README 入口移除，避免與模板 repo 綁定；已推送 commit `edaedf9`。
 
 ## 目前狀態
 
@@ -22,10 +26,11 @@
 
 - 目前遠端 repo：https://github.com/chunyifish/markdown-syntax-practice
 - 目前公開網站：https://chunyifish.github.io/markdown-syntax-practice/
+- 獨立懶人包 repo：https://github.com/chunyifish/codex-lazy-guides
 - 最新提交：`88c2aef Add Markdown lesson checks`
 - GitHub Pages 最新部署已成功，公開網址回應 `200 OK`。
 - 本機瀏覽器自動化驗證已通過：頁面載入、5 題產生、二級標題題與連結題完成判斷、Markdown 預覽、console 無錯誤。
-- 已知注意事項：GitHub Actions 仍有 Node 20 deprecation annotation，但部署成功；本機曾出現 `.git/AUTO_MERGE.lock` 殘留提示，但 `git status`、`commit`、`push` 均可正常運作。
+- 已知注意事項：GitHub Actions 仍有 Node 20 deprecation annotation，但部署成功；本機曾出現 `.git/AUTO_MERGE.lock` 殘留提示，但 `git status`、`commit`、`push` 均可正常運作；本機 `working/` 內保留了 `codex-lazy-guides` 與 `codex-project-template` 兩個工作副本。
 
 ## 下一步
 

@@ -7,6 +7,10 @@
 - [x] 實作基礎 Markdown 語法練習題。
 - [x] 實作即時預覽。
 - [x] 加入完成狀態或提示機制。
+- [x] 產出 Codex 專案模板懶人包交付文件。
+- [x] 將 Codex 專案模板懶人包放到 `chunyifish/codex-project-template` GitHub repo。
+- [x] 將懶人包獨立成 `chunyifish/codex-lazy-guides` GitHub repo。
+- [x] 從 `chunyifish/codex-project-template` 移除懶人包關聯。
 - [ ] 檢查手機與桌面版版面。
 - [x] 啟用 GitHub Pages 並記錄公開網址。
 
