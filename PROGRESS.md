@@ -9,6 +9,9 @@
 - 已確認不使用 Firebase。
 - 已建立專案文件與標準資料夾。
 - 已建立 GitHub Pages workflow 草稿。
+- 已初始化 Git 並建立初始 commit。
+- 已建立 GitHub repo：https://github.com/chunyifish/markdown-syntax-practice
+- 已啟用 GitHub Pages workflow 模式。
 
 ## 目前狀態
 
@@ -16,5 +19,4 @@
 
 ## 下一步
 
-確認 GitHub repo 名稱與公開狀態後，建立 GitHub repo、推送 `main` branch，並啟用 GitHub Pages。
-
+檢查 GitHub Pages workflow 是否成功完成，接著開始實作 Markdown 練習器功能。

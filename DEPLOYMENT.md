@@ -4,7 +4,7 @@
 
 ## 部署目標
 
-- GitHub repo：待建立
+- GitHub repo：已建立
 - GitHub Pages：需要
 - Vercel：不使用
 - Firebase：不使用
@@ -17,16 +17,16 @@
 
 ## GitHub
 
-- Repository：待建立
+- Repository：https://github.com/chunyifish/markdown-syntax-practice
 - Branch：`main`
-- Remote：待設定
-- Push 狀態：待推送
+- Remote：`origin`
+- Push 狀態：已推送
 
 ## GitHub Pages
 
 - 發布來源：GitHub Actions
 - 發布內容：`app/`
-- Pages URL：待建立 repo 並啟用後更新
+- Pages URL：https://chunyifish.github.io/markdown-syntax-practice/
 - 部署 workflow：`.github/workflows/pages.yml`
 
 ## 環境變數
@@ -36,4 +36,3 @@
 | 變數名稱 | 用途 | 是否必填 |
 |---|---|---|
 | 無 | 無 | 否 |
-
